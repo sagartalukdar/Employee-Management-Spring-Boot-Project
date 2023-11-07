@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+th:replace="~{base::layout(~{::title},~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Index page title</title>
+</head>
+<body>
+	<section style="padding: 30px; width: 1100px; margin: auto;">
+	<div style="text-align: center;font-size: 140%;">All Employee's Details</div>
+	<th:block th:if="${session.msg}">
+			<p class="text-center text-success fs-4">[[${session.msg}]]</p>
+			<th:block th:text="${@empserviceimpl.removeMessage()}"></th:block>
+		</th:block>
+		<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Department</th>
+      <th scope="col">Created At</th>
+      <th scope="col">Updated At</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="e,c:${emplist}">
+      <th scope="row">[[${c.count}]]</th>
+      <td>[[${e.firstName}]]</td>
+      <td>[[${e.lastName}]]</td>
+      <td>[[${e.email}]]</td>
+      <td>[[${e.department}]]</td>
+      <td>[[${e.createdAt}]]</td>
+      <td>[[${e.updatedAt}]]</td>
+      <td><a th:href="@{'editemp/'+${e.id}}" class="btn btn-sm btn-primary">Edit</a>
+     <a th:href="@{'deleteemp/'+${e.id}}" class="btn btn-sm btn-danger">Delete</a></td>
+    </tr>
+  
+  </tbody>
+</table>
+</section>
+</body>
+</html>

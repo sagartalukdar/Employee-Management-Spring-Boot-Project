@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+th:replace="~{base::layout(~{::title},~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>edit page title</title>
+</head>
+<body>
+	<section style="padding: 30px; width: 600px; margin: auto;">
+		<div style="text-align: center;font-size: 140%;">Edit Employee</div>
+		<th:block th:if="${session.msg}">
+			<p class="text-center text-success fs-4">[[${session.msg}]]</p>
+			<th:block th:text="${@empserviceimpl.removeMessage()}"></th:block>
+		</th:block>
+<form action="/updateemp" method="post">
+	<input type="hidden" name="id" th:value="${upemp.id}">
+     <div class="mb-3">
+    <label  class="form-label">First Name</label>
+    <input type="text" class="form-control" name="firstName" th:value="${upemp.firstName}">
+  </div>
+  <div class="mb-3">
+    <label  class="form-label">Last Name</label>
+    <input type="text" class="form-control" name="lastName" th:value="${upemp.lastName}">
+  </div>
+   <div class="mb-3">
+    <label  class="form-label">Email</label>
+    <input type="email" class="form-control" name="email" th:value="${upemp.email}">
+  </div>
+   <div class="mb-3">
+    <label  class="form-label">Department</label>
+    <input type="text" class="form-control" name="department" th:value="${upemp.department}">
+
+  </div>
+
+ 
+ <div style="text-align: center;">
+	   <button type="submit" class="btn btn-primary">Update</button>
+  </div>
+</form>
+</section>
+</body>
+</html>
